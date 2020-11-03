@@ -1,0 +1,200 @@
+#include<iostream>
+#include<list>
+#include<iterator>
+#include<string>
+#include<algorithm>
+class Book
+{
+  int Id;
+  std::basic_string<char> title;
+  std::basic_string<char> author;
+  std::basic_string<char> publisher;
+  double price;
+  int pages;
+  
+  public: 
+  inline Book()
+  : Id{0}
+  , title{std::basic_string<char>{std::basic_string<char>("", std::allocator<char>())}}
+  , author{std::basic_string<char>{std::basic_string<char>("", std::allocator<char>())}}
+  , publisher{std::basic_string<char>{std::basic_string<char>("", std::allocator<char>())}}
+  , price{0}
+  , pages{0}
+  {
+  }
+  
+  inline Book(int id, std::basic_string<char> book_name, std::basic_string<char> author_name, std::basic_string<char> publisher_name, double cost, int number_pages)
+  : Id{id}
+  , title{std::basic_string<char>{std::basic_string<char>(std::basic_string<char>(book_name))}}
+  , author{std::basic_string<char>{std::basic_string<char>(std::basic_string<char>(author_name))}}
+  , publisher{std::basic_string<char>{std::basic_string<char>(std::basic_string<char>(publisher_name))}}
+  , price{cost}
+  , pages{number_pages}
+  {
+  }
+  
+  inline int getId()
+  {
+    return this->Id;
+  }
+  
+  inline int getpages()
+  {
+    return this->pages;
+  }
+  
+  inline int getprice()
+  {
+    return static_cast<int>(this->price);
+  }
+  
+  inline std::basic_string<char> getauthor()
+  {
+    return std::basic_string<char>(this->author);
+  }
+  
+  inline std::basic_string<char> getpublisher()
+  {
+    return std::basic_string<char>(this->publisher);
+  }
+  
+  inline void display()
+  {
+    std::operator<<(std::operator<<(std::operator<<(std::operator<<(std::operator<<(std::operator<<(std::operator<<(std::operator<<(std::cout.operator<<(this->Id), ","), this->title), ","), this->author), ","), this->publisher), ",").operator<<(this->price), ",").operator<<(this->pages).operator<<(std::endl);
+  }
+  
+};
+
+class Library{
+  int Id;
+  std::basic_string<char> title;
+  std::basic_string<char> author;
+  std::basic_string<char> publisher;
+  double price;
+  int pages;
+	std::list<Book> lib;
+  public:
+  	void addBook();
+  	void removeBook(int id);
+  	void display();
+  	Book* findbook(int id);
+  	Book* findbook(std::string author_name);
+  	double averagePrice();
+  	int maxpages();
+  	int minpages();
+  	double average(std::string publisher_name);
+  	int booksrange(double rangemin, double rangemax);
+  	int countbooks(double cost);
+};
+void Library::addBook(){
+	lib.push_back(Book(Id,title,author,publisher,price,pages));
+}
+void Library::removeBook(int id){
+	std::list<Book>::iterator iter;
+  	for(iter=lib.begin();iter!=lib.end();++iter){
+    	if(iter->getId()==id){
+        	break;
+        }
+    }
+  	if(iter!=lib.end()){
+    	lib.erase(iter);
+    }
+}
+Book* Library::findbook(int id){
+    std::list<Book>::iterator iter;
+    for(iter=lib.begin();iter!=lib.end();++iter)
+    {
+        if(iter->getId()==id)
+        {
+            return &(*iter);
+        }
+    }
+    return NULL;	
+}
+Book* Library::findbook(std::string author_name){
+    std::list<Book>::iterator iter;
+    for(iter=lib.begin();iter!=lib.end();++iter)
+    {
+        if(iter->getauthor()==author)
+        {
+            return &(*iter);
+        }
+    }
+    return NULL;
+}
+double Library::averagePrice(){
+	std::list<Book>::iterator iter;
+  	double total=0;
+  	int count=0;
+  	for(iter=lib.begin();iter!=lib.end();++iter)
+    {
+        total=total+iter->getprice();
+      	count=count+1;
+    }
+  	double average;
+  	average=(total/count);
+  	return average;
+}
+int Library::maxpages(){
+    std::list<Book>::iterator iter=lib.begin();
+  	auto Maxpage=iter;
+  	int Max=iter->getpages();
+    for(;iter!=lib.end();++iter)
+    {
+        if(iter->getpages()>Max)
+        {
+            Maxpage=iter;
+          	Max=iter->getpages();
+        }
+    }
+    return Max;
+}
+int Library::minpages(){
+    std::list<Book>::iterator iter=lib.begin();
+  	auto Minpage=iter;
+  	int Min=iter->getpages();
+    for(;iter!=lib.end();++iter)
+    {
+        if(iter->getpages()<Min)
+        {
+            Minpage=iter;
+          	Min=iter->getpages();
+        }
+    }
+    return Min;
+}
+double Library::average(std::string publisher_name){
+	std::list<Book>::iterator iter;
+  	double total=0;
+  	int count=0;
+  	for(iter=lib.begin();iter!=lib.end();++iter)
+    {
+        if(iter->getpublisher()==publisher_name){
+        	total=total+iter->getprice();
+      		count=count+1;
+        } 	
+    }
+  	double average;
+  	average=(total/count);
+  	return average;
+}
+int Library::booksrange(double rangemin, double rangemax){
+	std::list<Book>::iterator iter;
+  	int count=0;
+  	for(iter=lib.begin();iter!=lib.end();++iter){
+    	if(iter->getprice()>rangemin && iter->getprice()<rangemax){
+        	count=count+1;
+        }
+    }
+  	return count;
+}
+int Library::countbooks(double cost){
+	std::list<Book>::iterator iter;
+  	int count=0;
+  	for(iter=lib.begin();iter!=lib.end();++iter){
+    	if(iter->getprice()<cost){
+        	count=count+1;
+        }
+    }
+  	return count;
+}

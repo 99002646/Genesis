@@ -1,0 +1,3 @@
+/home/training/Documents/Advance_C++/Coding_Tasks/Task-1/CMakeFiles/rebuild_cache.dir
+/home/training/Documents/Advance_C++/Coding_Tasks/Task-1/CMakeFiles/edit_cache.dir
+/home/training/Documents/Advance_C++/Coding_Tasks/Task-1/CMakeFiles/executeTests.dir

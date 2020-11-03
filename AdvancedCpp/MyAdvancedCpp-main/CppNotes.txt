@@ -1,0 +1,20 @@
+Best Practices Only:
+1_Basics.cpp
+    Brace initialization gives better performance compared to normal initialization.
+    \n is better than endl.
+    Use snake case or camel case for variable names.
+2_Functions.cpp
+    Nested functions are not supported in c++. Error on line 5.
+    Note the line no. 23 i.e same as int num = getValueFromUser();
+3_ForwardDec.cpp
+    It is also called as function prototyping or forward declaration.
+    Like in line no. 3, it is best to forward declare it with the parameters and to not do just int add(int, int);
+4_BasicsAboutNamespaces.cpp
+    As u can see, there is ambiguity when using namespace std, because compiler doesn't know if it should call the 
+    namespace or the function.
+5_Macro.cpp
+    Macros are resolved before compilation, that's why they're faster.
+    Three things you've to know in this is #define, #ifdef and #ifndef
+    #define is self-explanatory
+    #ifdef is basically if it is defined, execute code inside that block.
+    #ifndef is basically if it is not defined, execute code inside that block.

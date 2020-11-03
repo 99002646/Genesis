@@ -1,0 +1,2 @@
+Log File - Mon Jun  1 13:19:54 IST 2020
+value of x is 4
