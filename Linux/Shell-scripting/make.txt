@@ -1,0 +1,4 @@
+cc    -c -o test.o test.c
+cc    -c -o sum.o sum.c
+cc    -c -o sqr.o sqr.c
+gcc test.o sum.o sqr.o -o all.out
