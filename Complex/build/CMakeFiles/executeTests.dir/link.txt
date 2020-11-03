@@ -1,0 +1,1 @@
+/bin/g++-9  -g  -rdynamic CMakeFiles/executeTests.dir/complex_text.cpp.o  -o executeTests  -Wl,-Bstatic -lgtest -Wl,-Bdynamic -lpthread 

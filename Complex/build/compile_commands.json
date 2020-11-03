@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/user/Documents/Genesis/Complex/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/executeTests.dir/complex_text.cpp.o -c /home/user/Documents/Genesis/Complex/complex_text.cpp",
+  "file": "/home/user/Documents/Genesis/Complex/complex_text.cpp"
+}
+]
