@@ -1,0 +1,75 @@
+Git Overview
+
+To create a new repository use init command
+Eg: git init my_first_repository
+
+If a repository is already created, just get into that folder and do git init
+Eg: cd Desktop/my_first_repository
+      git init
+
+To add files, use add command
+Eg: git add my_file.txt
+
+Next, we have to commit, so the changes made over time can be tracked.
+Providing a message is compulsory with commit.
+You could either choose to commit a single file which was modified or all the files.
+Eg: git commit -m "Committed single file"
+Eg: git commit -a -m "Committed all the files"
+
+In the backend there is something called a staging area which keeps track of modified files which haven't been committed yet.
+We can use status command which gives info about the staging area
+Eg: git status
+
+To check all the commit details(unique commit id, commit message, username of committer, email of committer and timestamp) all sorted by newest to oldest by timestamp...use log command 
+Eg: git log
+
+The status command only gives you the details of all commits, but if you want to know what was done in each commit(code removed or added), you need the first 5-6 digits of the unique commit id(from git log) and then you can use checkout command.
+Eg: git checkout 737b1
+Before checkout command, the default branch was master branch.
+After the checkout command, it creates another temporary branch from the unique id.
+We could choose to make changes to this branch itself, but that may or may not be what we wanted to do,
+Instead create a different branch,
+Eg: git checkout -b new_branch_name              //b is branch
+After making the changes, if you want to move back to the master branch just do,
+Eg: git checkout master
+
+If you want to check the differences between different commits, use diff command and provide the commit ids.
+Eg: git diff 737b1 747b2
+
+Next, suppose we have a few features working and we want to implement a new feature, something might go wrong during its implementation and we might screw up the entire project. So, it's better to create a different branch, using the branch command.
+Eg: git branch my_new_branch
+To move into this newly created branch, we do git checkout my_new_branch
+Also note, instead of doing these two separate commands, we can do it in a single command,
+Eg: git checkout -b my_new_branch
+
+To view all the branches in the repository, use branch command.
+Eg: git branch
+
+To delete a branch we use branch command again, but with a -D.
+Eg: git branch -D my_new_branch
+
+Many a times, you'd have a lot other branches and finally you'd want to combine it with the main branch, you'd use the merge command. Also, make sure you're on the main branch before merging.
+Eg: git merge my_new_branch                    
+
+Sometimes, when changes are made on different lines in the same file in both branches, git is able to automatically merge without conflicts.
+But, when changes are made on the same line in both branches, then if we try merging, there would be a merge conflict.
+When it happens, we have something,
+       <<<<<<HEAD
+       Some bs...
+       ======
+       Some more bs...
+       >>>>>>my_new_branch
+HEAD specifies the newest commit.
+====== is the separator between the two versions.
+my_new_branch is the other branch.
+Just git commit after this.
+
+While collaborating, you might want not wanna start from scratch. Just use clone command.
+Eg: git clone existing_repository_name new_repository_name
+After cloning, the default name for the cloned repo will be origin
+
+To push the changes, use the push command,
+Eg: git push origin repository_name 
+
+To pull from a repo,
+Eg: git pull origin repository_name
