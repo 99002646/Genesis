@@ -1,0 +1,104 @@
+/*************Commit management************************/
+
+
+# print status of repo
+git status
+
+# add and stage all files 
+git add --all
+
+# commit all changes to local repo
+git commit -am "$message"
+
+# Push local changes to remote repo
+git push
+
+# Push local changes of branch to remote repo branch
+git push origin $branchname:$remote_branchname
+
+# copy changes to stash
+git stash
+
+# Apply stash to branch
+git stash apply
+
+# remove last commit
+git reset HEAD^ # remove commit locally; on windows git reset HEAD~1
+git push origin +HEAD # force-push the new HEAD commit
+
+# manipulate the last two commits interactively
+git rebase -i HEAD~2
+
+# Discard local changes
+git checkout -- .
+
+# Unstage staged files
+git restore --staged .
+
+#list tracked files
+git ls-tree -r master --name-only
+
+
+
+
+/***************Branch management**********************/
+
+
+# list remote branches
+git branch -r
+
+# create and change to new local branch
+git checkout -b $branchname
+
+# Change to local branch
+git checkout $branchname
+
+# Merge local branches
+git merge $branchname
+
+# Delete local branch
+git branch -d $branchname
+
+# Delete remote branch
+git push --delete origin $branchname
+
+# Remove unneeded remote tracking branches 
+git remote prune origin 
+
+Repo and account management
+# copy remote repository
+git clone $URL $folderName
+
+# get remote branch
+git fetch origin hotfix/2.7.1
+
+# prune locally tracked branches deleted remotely
+git fetch -p 
+
+# if not already set, change remote url of local repo
+git remote set-url origin git@gitlab.com:path/to/my-repo.git
+
+
+
+
+/****************Git Global settings************************/
+
+
+# set global ignore list
+git config --global core.excludesfile '~/.gitignoreglobal'
+
+# On Linux convert CRLF to LF but not other way round
+git config --global core.autocrlf input #Linux only
+
+# Map local and remote branch names 
+git config --global push.default current
+
+# create key
+ssh-keygen -t ed25519
+# copy public key to clipboard
+xclip -sel clip < ~/.ssh/id_ed25519.pub
+# Add key to git server (settings) and test connection
+ssh -T git@gitlab.com
+
+# Use maven with ssh key
+mvn -DenableSshAgent=true jgitflow:feature-start 
